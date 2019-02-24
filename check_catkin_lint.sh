@@ -3,7 +3,7 @@
 # Author:  Robert Haschke
 # Desc: Check for warnings during build process of repo $CI_SOURCE_PATH
 
-travis_fold start check.catkin_lint "Checking for issues reported by catkin_lint"
+travis_fold start check.catkin_lint "Checking for issues reported by ament_lint"
 
 travis_run apt-get -qq install -y python-catkin-lint
 travis_run --title "Running catkin_lint in repository source: $CI_SOURCE_PATH" \

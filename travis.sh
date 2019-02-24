@@ -11,7 +11,7 @@
 
 export MOVEIT_CI_DIR=$(dirname ${BASH_SOURCE:-$0})  # path to the directory running the current script
 export REPOSITORY_NAME=$(basename $PWD) # name of repository, travis originally checked out
-export CATKIN_WS=${CATKIN_WS:-/root/ws_moveit} # location of catkin workspace
+export CATKIN_WS=${CATKIN_WS:-/root/ws_moveit2} # location of catkin workspace
 
 # Travis' default timeout for open source projects is 50 mins
 # If your project has a larger timeout, specify this variable in your .travis.yml file!
@@ -37,7 +37,7 @@ function run_docker() {
 
     # Choose the docker container to use
     case "${ROS_REPO:-ros}" in
-       ros) export DOCKER_IMAGE=moveit/moveit:$ROS_DISTRO-ci ;;
+       ros) export DOCKER_IMAGE=moveit/moveit2:$ROS_DISTRO-ci ;;
        ros-shadow-fixed) export DOCKER_IMAGE=moveit/moveit:$ROS_DISTRO-ci-shadow-fixed ;;
        *) echo -e $(colorize RED "Unsupported ROS_REPO=$ROS_REPO. Use 'ros' or 'ros-shadow-fixed'"); exit 1 ;;
     esac
@@ -273,7 +273,7 @@ function test_workspace() {
 
 ###########################################################################################################
 # main program
- 
+
 # This repository has some dummy catkin packages in folder test_pkgs, which are needed for unit testing only.
 # To not clutter normal builds, we just create a CATKIN_IGNORE file in that folder.
 # A unit test can be recognized from the presence of the environment variable $TEST_PKG (see unit_tests.sh)
